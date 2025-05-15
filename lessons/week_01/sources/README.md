@@ -72,7 +72,7 @@ week_01/
     └── LoRaSendAndReceive/
         ├── LoRaSendAndReceive.ino
         ├── arduino_secrets.h
-
+```
 ---
 
 ## 🧭 Additional Tips
