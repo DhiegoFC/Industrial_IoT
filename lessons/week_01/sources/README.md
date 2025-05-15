@@ -1,7 +1,7 @@
 
 # Sending LoRaWAN messages from Arduino MKR WAN 1310 to TTN
 
-![Arduino MKR WAN 1310](./lesson_images/arduino-mrk-wan-1310.jpg)
+<img src="./lesson_images/arduino-mrk-wan-1310.jpg" alt="Arduino MRK WAN 1310" width="600"/>
 
 ## 🎯 Objective
 
@@ -64,12 +64,12 @@ Each device used in class is labeled with a number (01, 02, 03). Use the corresp
 ## 📂 Directory Structure
 
 week_01/
-│
-├── README.md ← This file
-├── sources/
-│ ├── lesson_images/ ← Supporting figures/images
-│ └── LoRaSendAndReceive/ ← Arduino sketch files for the experiment
-
+├── README.md
+└── sources/
+    ├── lesson_images/
+    └── LoRaSendAndReceive/
+        ├── LoRaSendAndReceive.ino
+        ├── arduino_secrets.h
 
 ---
 
@@ -85,9 +85,7 @@ week_01/
 
 Contact [dhiego.fernandes@unibg.it](mailto:dhiego.fernandes@unibg.it)
 
----
 
-Happy hacking! 🚀
 
 
 
