@@ -48,7 +48,7 @@ This course is part of the Department of Engineering and Applied Sciences at UNI
   [<img src="images/pdf_logo1.png" alt="PDF" width="23" height="23" /> IoT and LoRaWAN – Fundamentals for Industrial Applications](lessons/week_01/week_01_IoT_LoRaWAN_Industrial_IoT_Dhiego.pdf)
 
 - **Hands-on:**  
-  [Sending messages from Arduino MKR WAN 1310 to TTN](lessons/week_01/sources/)
+  [(lessons/week_01/sources/)
 
 ---
 
