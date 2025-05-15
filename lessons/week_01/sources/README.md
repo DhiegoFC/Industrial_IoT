@@ -64,6 +64,7 @@ Each device used in class is labeled with a number (01, 02, 03). Use the corresp
 
 ## 📂 Directory Structure
 
+```plaintext
 week_01/
 ├── README.md
 └── sources/
