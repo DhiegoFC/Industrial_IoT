@@ -4,39 +4,70 @@
 
 ## Department of Engineering and Applied Sciences
 
-### Industrial IoT
-
-#### Objectives:
-
-* Understand the fundamental principles of IoT and LoRaWAN in the OSI Model Stack context.
-* Configure and program LoRaWAN devices to transmit messages to The Things Network (TTN) and/or ChirpStack.
-* Integrate devices with sensors for environmental data collection and send them to the LoRaWAN servers.
-* Implement MQTT communication for real-time data ingestion.
-* Visualize and analyze data using Node-RED, MongoDB, and Grafana.
-
-#### Contact
-
-If you have any questions or suggestions, please contact: [dhiego.fernandes@unibg.it](mailto:dhiego.fernandes@unibg.it)
+### Industrial IoT – Short Course
 
 ---
 
-## Course Structure (3 sessions of 2 hours each)
+### 📌 Objectives
 
-### Week 01: From IoT to LoRaWAN – Fundamentals for Industrial Applications (2h)
+- Understand the core concepts of IoT and LoRaWAN within the OSI Model.
+- Configure and program LoRaWAN devices to transmit data via The Things Network (TTN) and/or ChirpStack.
+- Connect sensors to LoRaWAN devices for environmental monitoring.
+- Implement real-time communication using the MQTT protocol.
+- Visualize and analyze IoT data using Node-RED, MongoDB, and Grafana.
 
-* **Theory & Practice:** Introduction to IoT and LoRaWAN;
-* **Hands-on Exercise:** Sending messages from the Arduino MKR WAN 1310 to The Things Network (TTN).
-* **Slides:** [week\_01\_IoT\_LoRaWAN\_Industrial\_IoT\_Dhiego.pdf]<img src="images/pdf_logo1.png" alt="PDF" width="23" height="23" />
-* **Exercise Instructions:** [Connecting LoRaWAN Devices to TTN](lessons/week_01/sources/)
+📧 For questions or suggestions, contact: [dhiego.fernandes@unibg.it](mailto:dhiego.fernandes@unibg.it)
 
-### Week 02: Sensor Integration and Data Transmission (2h)
+### ✅ Requirements
 
-* **Hands-on Only:** Integration of a chosen sensor (e.g., temperature, humidity, pressure) with the Arduino MKR WAN 1310.
-* **Exercise Instructions:** [Sensor Data to LoRaWAN Server](lessons/week_02/sources/)
+- Arduino IDE or PlatformIO
+- TTN or ChirpStack account
+- USB cable for Arduino MKR WAN 1310
+- Sensor module (e.g., DHT11, BMP280, etc.)
+- Node.js installed (for Node-RED)
+- MongoDB and Grafana set up locally or on a server
 
-### Week 03: MQTT & Data Visualization (2h)
+---
 
-* **Hands-on Only:** MQTT integration with TTN or ChirpStack and creation of data dashboards using Node-RED, MongoDB, and Grafana.
-* **Exercise Instructions:** [Data Visualization Pipeline](lessons/week_03/sources/)
+### 💡 Notes
+
+This course is part of the Department of Engineering and Applied Sciences at UNIBG and aims to provide practical experience in Industrial IoT solutions using LPWAN technologies and cloud-based tools.
+
+---
+
+## 🗓️ Course Structure
+
+> **Format:** 3 sessions of 2 hours each  
+> **Platform:** Arduino MKR WAN 1310 + LoRaWAN + MQTT + Node-RED/MongoDB/Grafana
+
+---
+
+### 📘 Week 01 – IoT and LoRaWAN Fundamentals (2h)
+
+- **Slides:**  
+  [<img src="images/pdf_logo1.png" alt="PDF" width="23" height="23" /> IoT and LoRaWAN – Fundamentals for Industrial Applications](lessons/week_01/week_01_IoT_LoRaWAN_Industrial_IoT_Dhiego.pdf)
+
+- **Hands-on:**  
+  [Sending messages from Arduino MKR WAN 1310 to TTN](lessons/week_01/sources/)
+
+---
+
+### 🔧 Week 02 – Sensor Integration and Transmission to LoRaWAN (2h)
+
+- **Hands-on:**  
+  [Sensor integration (e.g., temperature, humidity, pressure) with Arduino MKR WAN 1310](lessons/week_02/sources/)
+
+---
+
+### 🌐 Week 03 – MQTT & Data Visualization Pipeline (2h)
+
+- **Hands-on:**  
+  [Integration with TTN/ChirpStack and data visualization using Node-RED, MongoDB, and Grafana](lessons/week_03/sources/)
+
+---
+
+
+
+
 
 
