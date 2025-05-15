@@ -1,7 +1,7 @@
 
 # Sending LoRaWAN messages from Arduino MKR WAN 1310 to TTN
 <div align="center">
-    <img src="./lesson_images/arduino-mrk-wan-1310.jpg" alt="Arduino MRK WAN 1310" width="500"/>
+    <img src="./lesson_images/arduino-mrk-wan-1310_1.jpg" alt="Arduino MRK WAN 1310" width="400"/>
 </div>
 
 ## 🎯 Objective
