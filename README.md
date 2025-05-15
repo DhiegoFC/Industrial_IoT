@@ -20,7 +20,7 @@
 
 ### ✅ Requirements
 
-- Arduino IDE or PlatformIO
+- Arduino IDE 
 - TTN or ChirpStack account
 - USB cable for Arduino MKR WAN 1310
 - Sensor module (e.g., DHT11, BMP280, etc.)
