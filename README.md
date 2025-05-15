@@ -38,7 +38,7 @@ This course is part of the Department of Engineering and Applied Sciences at UNI
 ## 🗓️ Course Structure
 
 > **Format:** 3 sessions of 2 hours each  
-> **Platform:** Arduino MKR WAN 1310 + LoRaWAN + MQTT + Node-RED/MongoDB/Grafana
+> **Platform:** Arduino MKR WAN 1310 + LoRaWAN (TTN or ChirpStack) + MQTT + Node-RED/MongoDB/Grafana
 
 ---
 
