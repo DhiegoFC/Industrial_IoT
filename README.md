@@ -52,19 +52,20 @@ This course is part of the Department of Engineering and Applied Sciences at UNI
 
 ---
 
-### 🔧 Week 02 – Sensor Integration and Transmission to LoRaWAN (2h)
+### 🔧 Week 02 – ChirpStack, LoRaWAN Settings & MQTT Integration (2h)
 
 - **Hands-on:**  
-  [Sensor integration (e.g., temperature, humidity, pressure) with Arduino MKR WAN 1310](lessons/week_02/sources/)
+  [Connecting Arduino MKR WAN 1310 to ChirpStack (Docker) and exploring LoRaWAN settings (DR, ADR, confirmed/unconfirmed messages) with basic MQTT via Node-RED](lessons/week_02/sources/)
 
 ---
 
-### 🌐 Week 03 – MQTT & Data Visualization Pipeline (2h)
+### 🌐 Week 03 – Sensor Integration & Full Data Pipeline (2h)
 
 - **Hands-on:**  
-  [Integration with TTN/ChirpStack and data visualization using Node-RED, MongoDB, and Grafana](lessons/week_03/sources/)
+  [Reading sensor data from Environment 3 Click and visualizing it through ChirpStack, MQTT, Node-RED, InfluxDB, and Grafana](lessons/week_03/sources/)
 
 ---
+
 
 
 
