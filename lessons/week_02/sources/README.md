@@ -58,7 +58,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 3. **Create an Application**
 
 4. **Register your Arduino MKR WAN 1310**
-   - Use the same **`devEUI`**, **`appEUI`**, and **`appKey`** from [**Week 01**](../../week_01/sources/README.md)
+   - Use the same **`devEUI`**, **`appEUI`**, and **`appKey`** from [Week 01](../../week_01/sources/README.md)
    - Match the device profile you created
 
 ---
