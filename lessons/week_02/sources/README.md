@@ -69,7 +69,8 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 
 - Download from [https://nodered.org](https://nodered.org)
 - Install normally on your machine
-> Open your command prompt and type "node-red"
+- Open your command prompt and type "node-red"
+
 > **Access Node-RED at:** [http://localhost:1880](http://localhost:1880)
 
 ### 2. 🔌 Connect Node-RED to ChirpStack MQTT Broker
@@ -87,7 +88,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 
 Use the sketch provided at the link below for your device configuration:
 
-👉 [LoRaSendAndReceive Sketch for ChirpStack](./LoRaSendAndReceive/)
+👉 [LoRaSendAndReceive Sketch for ChirpStack](./LoRaSendAndReceiveUpdated/)
 
 ---
 
