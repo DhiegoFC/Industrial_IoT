@@ -1,3 +1,4 @@
+
 /*
   Lora Send And Receive
   This sketch demonstrates how to send and receive data with the MKR WAN 1300/1310 LoRa module.
@@ -13,8 +14,8 @@ LoRaModem modem;
 
 #include "arduino_secrets.h"
 // Please enter your sensitive data in the Secret tab or arduino_secrets.h
-String appEui = "AA99887766554433";
-String appKey = "AA99887766554433AA99887766554433";
+String appEui = "aa99887766554433";
+String appKey = "aa99887766554433aa99887766554433";
 
 void setup() {
   // put your setup code here, to run once:

@@ -69,7 +69,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 
 - Download from [https://nodered.org](https://nodered.org)
 - Install normally on your machine
-
+> Open your command prompt and type "node-red"
 > **Access Node-RED at:** [http://localhost:1880](http://localhost:1880)
 
 ### 2. 🔌 Connect Node-RED to ChirpStack MQTT Broker
@@ -77,7 +77,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 - Add an MQTT-in node
 - Broker: `localhost`
 - Port: `1883`
-- Topic: `application/+/device/+/event/up`
+- Topic: `application/"application-id"/device/"deviceEUI"/event/up`
 
 🔍 You should start receiving **uplink messages** from your Arduino MKR WAN 1310, forwarded through the gateway and ChirpStack.
 
@@ -98,5 +98,7 @@ week_02/
 ├── README.md
 └── sources/
     ├── lesson_images/
-    └── LoRaSendAndReceive/
-        └── LoRaSendAndReceive.ino
+    └── LoRaSendAndReceiveUpdated/
+        └── LoRaSendAndReceiveUpdated.ino
+        └── arduino_secrets.h
+
