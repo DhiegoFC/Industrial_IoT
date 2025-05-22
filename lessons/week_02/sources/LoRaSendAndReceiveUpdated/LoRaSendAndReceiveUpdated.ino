@@ -1,55 +1,59 @@
-
-/*
-  Lora Send And Receive
-  This sketch demonstrates how to send and receive data with the MKR WAN 1300/1310 LoRa module.
-  This example code is in the public domain.
-*/
+// LoRa Send and Receive Updated Example for Arduino MKR WAN 1310 (EU868)
+// Adjusted for: Data Rate, Adaptative Data Rate, Error Monitoring, and OTAA Join Attempts
 
 #include <MKRWAN.h>
 
 LoRaModem modem;
 
-// Uncomment if using the Murata chip as a module
-// LoRaModem modem(Serial1);
-
-#include "arduino_secrets.h"
-// Please enter your sensitive data in the Secret tab or arduino_secrets.h
+// Replace with your keys from The Things Network console
 String appEui = "aa99887766554433";
 String appKey = "aa99887766554433aa99887766554433";
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
+  Serial.begin(9600);
   while (!Serial);
-  // change this to your regional band (eg. US915, AS923, ...)
+  delay(2000);
+
   if (!modem.begin(EU868)) {
     Serial.println("Failed to start module");
     while (1) {}
   };
+
   Serial.print("Your module version is: ");
   Serial.println(modem.version());
   Serial.print("Your device EUI is: ");
   Serial.println(modem.deviceEUI());
 
-  int connected = modem.joinOTAA(appEui, appKey);
+  // Set Data Rate for Join Request Messages 
+  modem.dataRate(5); 
+
+  int attempts = 0;
+  const int maxAttempts = 3;
+  bool connected = false;
+
+  Serial.println("Joining LoRaWAN network using OTAA...");
+  while (attempts < maxAttempts && !connected) {
+    connected = modem.joinOTAA(appEui, appKey);
+    if (!connected) {
+      Serial.print("OTAA join attempt ");
+      Serial.print(attempts + 1);
+      Serial.println(" failed.");
+      delay(5000);
+      attempts++;
+    }
+
+    // Set Data Rate for Confirmed/Unconfirmed LoRaWAN Messages 
+    modem.dataRate(5); 
+    // Set Adaptative Data Rate 
+    modem.setADR(true);
+  }
+
   if (!connected) {
-    Serial.println("Something went wrong; are you indoor? Move near a window and retry");
+    Serial.println("Join failed after 3 OTAA attempts. Check your keys and coverage.");
     while (1) {}
+  } else {
+    Serial.println("Successfully joined LoRaWAN network via OTAA.");
   }
-  else if (connected) {
-    Serial.println("Device connected to the server by OTAA");
-  }
-  // Setting Data Rate (0 to 5)
-  modem.dataRate(0); 
-
-  // setting Adaptative Data Rate (ADR)
-  modem.setADR(false); 
-
-  // Set poll interval to 60 secs.
-  modem.minPollInterval(60);
-  // NOTE: independent of this setting, the modem will
-  // not allow sending more than one message every 2 minutes,
-  // this is enforced by firmware and can not be changed.
 }
 
 void loop() {
@@ -69,9 +73,8 @@ void loop() {
   }
   Serial.println();
 
-  int err;
-  
-  
+  int err;  
+
   modem.beginPacket();
   modem.print(msg);
   err = modem.endPacket(true);
