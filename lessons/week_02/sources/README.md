@@ -29,7 +29,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 
 ### 2. 🛰️ Download and Run ChirpStack (Docker Version)
 
-- Clone or download the [ChirpStack Docker repository](https://github.com/chirpstack/chirpstack-docker)
+- Clone or download the [ChirpStack Docker repository](https://www.chirpstack.io/docs/getting-started/docker.html)
 - Follow the instructions to launch the stack (usually `docker-compose up`)
 
 > **Access ChirpStack at:** [https://localhost:8080](https://localhost:8080)  
