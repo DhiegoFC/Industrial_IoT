@@ -58,7 +58,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 3. **Create an Application**
 
 4. **Register your Arduino MKR WAN 1310**
-   - Use the same **`devEUI`**, **`appEUI`**, and **`appKey`** from [Week 01](../../week_01/sources/README.md)
+   - Use the same **`devEUI`**, **`appEUI`**, and **`appKey`** from [week 01](../../week_01/sources/README.md)
    - Match the device profile you created
 
 ---
@@ -80,7 +80,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 - Port: `1883`
 - Topic: `application/"application-id"/device/"deviceEUI"/event/up`
 
-🔍 You should start receiving **uplink messages** from your Arduino MKR WAN 1310, forwarded through the gateway and ChirpStack.
+🔍 You should start receiving **uplink messages** from your Arduino MKR WAN 1310, forwarded through the gateway and ChirpStack. You also can download the node-red flow used in this lesson [here](./node-red/chirpstack-mqtt-integration.json) and import it. 
 
 ---
 
@@ -88,7 +88,7 @@ In this session, students will learn how to set up their own **ChirpStack LoRaWA
 
 Use the sketch provided at the link below for your device configuration:
 
-👉 [LoRaSendAndReceive Sketch for ChirpStack](./LoRaSendAndReceiveUpdated/)
+👉 [LoRaSendAndReceiveUpdated Sketch for ChirpStack](./LoRaSendAndReceiveUpdated/)
 
 ---
 

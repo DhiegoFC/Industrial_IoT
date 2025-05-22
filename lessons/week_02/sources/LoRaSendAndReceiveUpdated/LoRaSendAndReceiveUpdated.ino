@@ -39,6 +39,11 @@ void setup() {
   else if (connected) {
     Serial.println("Device connected to the server by OTAA");
   }
+  // Setting Data Rate (0 to 5)
+  modem.dataRate(0); 
+
+  // setting Adaptative Data Rate (ADR)
+  modem.setADR(false); 
 
   // Set poll interval to 60 secs.
   modem.minPollInterval(60);
@@ -65,6 +70,8 @@ void loop() {
   Serial.println();
 
   int err;
+  
+  
   modem.beginPacket();
   modem.print(msg);
   err = modem.endPacket(true);

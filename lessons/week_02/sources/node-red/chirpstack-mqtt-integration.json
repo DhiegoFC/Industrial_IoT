@@ -1,0 +1,129 @@
+[
+    {
+        "id": "a7dd76fa4abc4abd",
+        "type": "mqtt in",
+        "z": "db8b9e2e947406c1",
+        "name": "Arduino MKR 1310 01",
+        "topic": "application/eb1c946c-7d3f-4c85-950c-abcb67f0ed27/device/a8610a3233187404/event/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ac4e846f588e8e65",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 60,
+        "wires": [
+            [
+                "acf89c9064f54a74",
+                "ca28625b9e0da0ab"
+            ]
+        ]
+    },
+    {
+        "id": "acf89c9064f54a74",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "LoRaWAN Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 410,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ca28625b9e0da0ab",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Convert Base64 To Hex",
+        "func": "// Função para converter Base64 para Hexadecimal\nfunction base64ToHex(base64) {\n    // Decodifica a string Base64 para bytes binários\n    var binaryString = Buffer.from(base64, 'base64').toString('binary');\n    \n    // Converte os bytes binários para hexadecimal\n    var hexString = '';\n    for (var i = 0; i < binaryString.length; i++) {\n        var hex = binaryString.charCodeAt(i).toString(16);\n        hexString += (hex.length === 1 ? '0' : '') + hex;\n    }\n    \n    return hexString;\n}\n\n// Verifica se msg.payload é um objeto e se a propriedade desejada é uma string\nif (typeof msg.payload === 'object' && typeof msg.payload.data === 'string' && msg.payload.data.trim() !== '') {\n    try {\n        // Converte a propriedade especificada de Base64 para Hex e armazena o resultado\n        msg.payload.data = base64ToHex(msg.payload.data);\n        return msg;\n    } catch (error) {\n        // Trata erros de conversão\n        node.error(\"Erro ao converter Base64 para Hex: \" + error.message);\n        return null; // Interrompe o fluxo aqui\n    }\n} else {\n    // Retorna uma mensagem de erro se o payload não contém a propriedade correta\n    node.error(\"Payload must be an object containing a 'data' property with Base64 string\");\n    return null; // Interrompe o fluxo aqui\n}\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 410,
+        "y": 180,
+        "wires": [
+            [
+                "0144bc9082a97f14"
+            ]
+        ]
+    },
+    {
+        "id": "775bfa1c4c8314db",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "LoRaWAN Data Message",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 890,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "0144bc9082a97f14",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Hex to ASCII",
+        "func": "function hexToAscii(hex) {\n    var ascii = '';\n    for (var i = 0; i < hex.length; i += 2) {\n        ascii += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    }\n    return ascii;\n}\n\nvar data = hexToAscii(msg.payload.data);\n\nmsg.payload= data;\n\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 650,
+        "y": 180,
+        "wires": [
+            [
+                "775bfa1c4c8314db"
+            ]
+        ]
+    },
+    {
+        "id": "ac4e846f588e8e65",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
