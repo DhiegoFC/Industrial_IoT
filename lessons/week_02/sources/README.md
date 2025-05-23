@@ -96,9 +96,11 @@ Use the sketch provided at the link below for your device configuration:
 
 ```plaintext
 week_02/
-├── README.md
+├── README.md   
 └── sources/
     ├── lesson_images/
+    ├── node-red
+    |   └── chirpstack-mqtt-integration.json
     └── LoRaSendAndReceiveUpdated/
         └── LoRaSendAndReceiveUpdated.ino
         └── arduino_secrets.h
