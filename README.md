@@ -4,7 +4,7 @@
 
 ## Department of Engineering and Applied Sciences
 
-### Industrial IoT – Short Course
+### Industrial IoT 
 
 ---
 
@@ -35,14 +35,7 @@ This course is part of the Department of Engineering and Applied Sciences at UNI
 
 ---
 
-## 🗓️ Course Structure
-
-> **Format:** 3 sessions of 2 hours each  
-> **Platform:** Arduino MKR WAN 1310 + LoRaWAN (TTN or ChirpStack) + MQTT + Node-RED/MongoDB/Grafana
-
----
-
-### 📘 Week 01 – IoT and LoRaWAN Fundamentals (2h)
+### 📘 Week 01 – IoT and LoRaWAN Fundamentals 
 
 - **Slides:**  
   [<img src="images/pdf_logo1.png" alt="PDF" width="23" height="23" /> IoT and LoRaWAN – Fundamentals for Industrial Applications](lessons/week_01/week_01_IoT_LoRaWAN_Industrial_IoT_Dhiego.pdf)
@@ -52,17 +45,17 @@ This course is part of the Department of Engineering and Applied Sciences at UNI
 
 ---
 
-### 🔧 Week 02 – ChirpStack, LoRaWAN Settings & MQTT Integration (2h)
+### 🔧 Week 02 – ChirpStack, LoRaWAN Settings & MQTT Integration 
 
 - **Hands-on:**  
   [Connecting Arduino MKR WAN 1310 to ChirpStack (Docker) and exploring LoRaWAN settings (DR, ADR, confirmed/unconfirmed messages) with basic MQTT via Node-RED](lessons/week_02/sources/)
 
 ---
 
-### 🌐 Week 03 – Sensor Integration & Full Data Pipeline (2h)
+### 🌐 Week 03 – Full IoT Pipeline with Data Visualization 
 
 - **Hands-on:**  
-  [Reading sensor data from Environment 3 Click and visualizing it through ChirpStack, MQTT, Node-RED, InfluxDB, and Grafana](lessons/week_03/sources/)
+  [Real-time integration: Arduino → ChirpStack → MQTT → Node-RED → InfluxDB → Grafana](lessons/week_03/sources/)
 
 ---
 
