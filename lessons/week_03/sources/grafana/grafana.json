@@ -1,0 +1,1311 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Industrial IoT dashboard",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "panels": [],
+      "title": "Arduino 01",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 1
+      },
+      "id": 1,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^data$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"data\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Data",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "orange",
+                "value": 2
+              },
+              {
+                "color": "#EAB839",
+                "value": 3
+              },
+              {
+                "color": "green",
+                "value": 4
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 1
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^dr$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"dr\")",
+          "refId": "A"
+        }
+      ],
+      "title": "DR",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 7
+              },
+              {
+                "color": "green",
+                "value": 8
+              },
+              {
+                "color": "yellow",
+                "value": 9
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 11
+              },
+              {
+                "color": "red",
+                "value": 11.9997
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^SF$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"SF\")",
+          "refId": "A"
+        }
+      ],
+      "title": "SF",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 5
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^frequency$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"frequency\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Frequency",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 5
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^fCnt$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"fCnt\")",
+          "refId": "A"
+        }
+      ],
+      "title": "fCnt",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 5
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^confirmed$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_01\" and r._field == \"confirmed\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Confirmed Message",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 9,
+      "panels": [],
+      "title": "Arduino 02",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 10
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^data$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"data\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Data",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "orange",
+                "value": 2
+              },
+              {
+                "color": "#EAB839",
+                "value": 3
+              },
+              {
+                "color": "green",
+                "value": 4
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^dr$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"dr\")",
+          "refId": "A"
+        }
+      ],
+      "title": "DR",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 7
+              },
+              {
+                "color": "green",
+                "value": 8
+              },
+              {
+                "color": "yellow",
+                "value": 9
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 11
+              },
+              {
+                "color": "red",
+                "value": 11.9997
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 10
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^SF$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"SF\")",
+          "refId": "A"
+        }
+      ],
+      "title": "SF",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 14
+      },
+      "id": 15,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^frequency$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"frequency\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Frequency",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 14
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^fCnt$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"fCnt\")",
+          "refId": "A"
+        }
+      ],
+      "title": "fCnt",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 14
+      },
+      "id": 14,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^confirmed$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_02\" and r._field == \"confirmed\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Confirmed Message",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 16,
+      "panels": [],
+      "title": "Arduino 03",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 19
+      },
+      "id": 18,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^data$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"data\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Data",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 0
+              },
+              {
+                "color": "red",
+                "value": 1
+              },
+              {
+                "color": "orange",
+                "value": 2
+              },
+              {
+                "color": "#EAB839",
+                "value": 3
+              },
+              {
+                "color": "green",
+                "value": 4
+              },
+              {
+                "color": "green",
+                "value": 5
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 19
+      },
+      "id": 20,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^dr$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"dr\")",
+          "refId": "A"
+        }
+      ],
+      "title": "DR",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "green",
+                "value": 7
+              },
+              {
+                "color": "green",
+                "value": 8
+              },
+              {
+                "color": "yellow",
+                "value": 9
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 11
+              },
+              {
+                "color": "red",
+                "value": 11.9997
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 19
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^SF$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"SF\")",
+          "refId": "A"
+        }
+      ],
+      "title": "SF",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 0,
+        "y": 23
+      },
+      "id": 19,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^frequency$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"frequency\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Frequency",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "blue"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 5,
+        "y": 23
+      },
+      "id": 21,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^fCnt$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"fCnt\")",
+          "refId": "A"
+        }
+      ],
+      "title": "fCnt",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "aenc7nwhy34lca"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [
+            {
+              "options": {
+                "false": {
+                  "color": "red",
+                  "index": 0,
+                  "text": "FALSE"
+                },
+                "true": {
+                  "color": "green",
+                  "index": 1,
+                  "text": "TRUE"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green"
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 8,
+        "y": 23
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^confirmed$/",
+          "values": false
+        },
+        "showPercentChange": false,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "12.0.1",
+      "targets": [
+        {
+          "query": "from(bucket:\"industrial_iot\")\r\n    |> range(start: -24h)\r\n    |> filter(fn: (r) => r._measurement == \"arduino_03\" and r._field == \"confirmed\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Confirmed Message",
+      "type": "stat"
+    }
+  ],
+  "preload": false,
+  "refresh": "30s",
+  "schemaVersion": 41,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2025-05-30T02:11:25.772Z",
+    "to": "2025-05-30T14:11:25.772Z"
+  },
+  "timepicker": {},
+  "timezone": "browser",
+  "title": "Industrial IoT",
+  "uid": "a9cdf0cf-2e4e-4b8d-bf9f-416412c6fd6b",
+  "version": 38
+}

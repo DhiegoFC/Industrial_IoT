@@ -6,8 +6,8 @@
 LoRaModem modem;
 
 // Replace with your keys from The Things Network console
-String appEui = "aa99887766554433";
-String appKey = "aa99887766554433aa99887766554433";
+String appEui = "8877665544332211";
+String appKey = "88776655443322118877665544332211";
 
 void setup() {
   Serial.begin(9600);

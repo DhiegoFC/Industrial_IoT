@@ -1,0 +1,453 @@
+[
+    {
+        "id": "a7dd76fa4abc4abd",
+        "type": "mqtt in",
+        "z": "db8b9e2e947406c1",
+        "name": "Arduino MKR 1310 01",
+        "topic": "application/eb1c946c-7d3f-4c85-950c-abcb67f0ed27/device/a8610a3233187404/event/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ac4e846f588e8e65",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 60,
+        "wires": [
+            [
+                "acf89c9064f54a74",
+                "ca28625b9e0da0ab"
+            ]
+        ]
+    },
+    {
+        "id": "acf89c9064f54a74",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "LoRaWAN Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ca28625b9e0da0ab",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Convert Base64 To Hex",
+        "func": "// Função para converter Base64 para Hexadecimal\nfunction base64ToHex(base64) {\n    // Decodifica a string Base64 para bytes binários\n    var binaryString = Buffer.from(base64, 'base64').toString('binary');\n    \n    // Converte os bytes binários para hexadecimal\n    var hexString = '';\n    for (var i = 0; i < binaryString.length; i++) {\n        var hex = binaryString.charCodeAt(i).toString(16);\n        hexString += (hex.length === 1 ? '0' : '') + hex;\n    }\n    \n    return hexString;\n}\n\n// Verifica se msg.payload é um objeto e se a propriedade desejada é uma string\nif (typeof msg.payload === 'object' && typeof msg.payload.data === 'string' && msg.payload.data.trim() !== '') {\n    try {\n        // Converte a propriedade especificada de Base64 para Hex e armazena o resultado\n        msg.payload.data = base64ToHex(msg.payload.data);\n        return msg;\n    } catch (error) {\n        // Trata erros de conversão\n        node.error(\"Erro ao converter Base64 para Hex: \" + error.message);\n        return null; // Interrompe o fluxo aqui\n    }\n} else {\n    // Retorna uma mensagem de erro se o payload não contém a propriedade correta\n    node.error(\"Payload must be an object containing a 'data' property with Base64 string\");\n    return null; // Interrompe o fluxo aqui\n}\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 60,
+        "wires": [
+            [
+                "0144bc9082a97f14"
+            ]
+        ]
+    },
+    {
+        "id": "775bfa1c4c8314db",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "Influxdb",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "0144bc9082a97f14",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Hex to ASCII",
+        "func": "function hexToAscii(hex) {\n    var ascii = '';\n    for (var i = 0; i < hex.length; i += 2) {\n        ascii += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    }\n    return ascii;\n}\n\nvar data = hexToAscii(msg.payload.data);\n\nmsg.payload.data = data;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 60,
+        "wires": [
+            [
+                "2c4457657a03f774"
+            ]
+        ]
+    },
+    {
+        "id": "2c4457657a03f774",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Create database payload",
+        "func": "// Cria um novo payload somente com os campos desejados\n\n\nmsg.payload = {\n    //tags: {\n        deviceName: msg.payload.deviceInfo.deviceName,\n    //},\n\n    //fields: {\n        data: msg.payload.data,\n        dr: msg.payload.dr,\n        fCnt: msg.payload.fCnt,\n        rssi: msg.payload.rxInfo[0].rssi,\n        snr: msg.payload.rxInfo[0].snr,\n        frequency: msg.payload.txInfo.frequency,\n        bandwidth: msg.payload.txInfo.modulation.lora.bandwidth,\n        SF: msg.payload.txInfo.modulation.lora.spreadingFactor,\n        CR: msg.payload.txInfo.modulation.lora.codeRate,\n        confirmed: msg.payload.confirmed,\n        adr: msg.payload.adr,\n    //},\n    \n}; \n\nmsg.measur\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 60,
+        "wires": [
+            [
+                "775bfa1c4c8314db",
+                "f5220e2f373aabcd"
+            ]
+        ]
+    },
+    {
+        "id": "f5220e2f373aabcd",
+        "type": "influxdb out",
+        "z": "db8b9e2e947406c1",
+        "influxdb": "4852b867f0a1315a",
+        "name": "influxdb",
+        "measurement": "arduino_01",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "UNIBG",
+        "bucket": "industrial_iot",
+        "x": 1020,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "7ceb0ceb6256e328",
+        "type": "mqtt in",
+        "z": "db8b9e2e947406c1",
+        "name": "Arduino MKR 1310 02",
+        "topic": "application/eb1c946c-7d3f-4c85-950c-abcb67f0ed27/device/a8610a34352d810e/event/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ac4e846f588e8e65",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 240,
+        "wires": [
+            [
+                "1ffc322df855d472",
+                "7785357231955fe1"
+            ]
+        ]
+    },
+    {
+        "id": "1ffc322df855d472",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "LoRaWAN Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "7785357231955fe1",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Convert Base64 To Hex",
+        "func": "// Função para converter Base64 para Hexadecimal\nfunction base64ToHex(base64) {\n    // Decodifica a string Base64 para bytes binários\n    var binaryString = Buffer.from(base64, 'base64').toString('binary');\n    \n    // Converte os bytes binários para hexadecimal\n    var hexString = '';\n    for (var i = 0; i < binaryString.length; i++) {\n        var hex = binaryString.charCodeAt(i).toString(16);\n        hexString += (hex.length === 1 ? '0' : '') + hex;\n    }\n    \n    return hexString;\n}\n\n// Verifica se msg.payload é um objeto e se a propriedade desejada é uma string\nif (typeof msg.payload === 'object' && typeof msg.payload.data === 'string' && msg.payload.data.trim() !== '') {\n    try {\n        // Converte a propriedade especificada de Base64 para Hex e armazena o resultado\n        msg.payload.data = base64ToHex(msg.payload.data);\n        return msg;\n    } catch (error) {\n        // Trata erros de conversão\n        node.error(\"Erro ao converter Base64 para Hex: \" + error.message);\n        return null; // Interrompe o fluxo aqui\n    }\n} else {\n    // Retorna uma mensagem de erro se o payload não contém a propriedade correta\n    node.error(\"Payload must be an object containing a 'data' property with Base64 string\");\n    return null; // Interrompe o fluxo aqui\n}\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "f7d84e66f3282b09"
+            ]
+        ]
+    },
+    {
+        "id": "894ce396ff5f5b23",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "Influxdb",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f7d84e66f3282b09",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Hex to ASCII",
+        "func": "function hexToAscii(hex) {\n    var ascii = '';\n    for (var i = 0; i < hex.length; i += 2) {\n        ascii += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    }\n    return ascii;\n}\n\nvar data = hexToAscii(msg.payload.data);\n\nmsg.payload.data = data;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 240,
+        "wires": [
+            [
+                "84cf570453ea0e67"
+            ]
+        ]
+    },
+    {
+        "id": "84cf570453ea0e67",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Create database payload",
+        "func": "// Cria um novo payload somente com os campos desejados\n\n\nmsg.payload = {\n    //tags: {\n        deviceName: msg.payload.deviceInfo.deviceName,\n    //},\n\n    //fields: {\n        data: msg.payload.data,\n        dr: msg.payload.dr,\n        fCnt: msg.payload.fCnt,\n        rssi: msg.payload.rxInfo[0].rssi,\n        snr: msg.payload.rxInfo[0].snr,\n        frequency: msg.payload.txInfo.frequency,\n        bandwidth: msg.payload.txInfo.modulation.lora.bandwidth,\n        SF: msg.payload.txInfo.modulation.lora.spreadingFactor,\n        CR: msg.payload.txInfo.modulation.lora.codeRate,\n        confirmed: msg.payload.confirmed,\n        adr: msg.payload.adr,\n    //},\n    \n}; \n\nmsg.measur\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "894ce396ff5f5b23",
+                "fe23c441818c9cc5"
+            ]
+        ]
+    },
+    {
+        "id": "fe23c441818c9cc5",
+        "type": "influxdb out",
+        "z": "db8b9e2e947406c1",
+        "influxdb": "4852b867f0a1315a",
+        "name": "influxdb",
+        "measurement": "arduino_02",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "UNIBG",
+        "bucket": "industrial_iot",
+        "x": 1020,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "db9bac1d97dda02b",
+        "type": "mqtt in",
+        "z": "db8b9e2e947406c1",
+        "name": "Arduino MKR 1310 03",
+        "topic": "application/eb1c946c-7d3f-4c85-950c-abcb67f0ed27/device/a8610a3233367504/event/up",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "ac4e846f588e8e65",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 400,
+        "wires": [
+            [
+                "4b6b4ccb3f4921a8",
+                "6d5c0db9f137b797"
+            ]
+        ]
+    },
+    {
+        "id": "4b6b4ccb3f4921a8",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "LoRaWAN Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 330,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "6d5c0db9f137b797",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Convert Base64 To Hex",
+        "func": "// Função para converter Base64 para Hexadecimal\nfunction base64ToHex(base64) {\n    // Decodifica a string Base64 para bytes binários\n    var binaryString = Buffer.from(base64, 'base64').toString('binary');\n    \n    // Converte os bytes binários para hexadecimal\n    var hexString = '';\n    for (var i = 0; i < binaryString.length; i++) {\n        var hex = binaryString.charCodeAt(i).toString(16);\n        hexString += (hex.length === 1 ? '0' : '') + hex;\n    }\n    \n    return hexString;\n}\n\n// Verifica se msg.payload é um objeto e se a propriedade desejada é uma string\nif (typeof msg.payload === 'object' && typeof msg.payload.data === 'string' && msg.payload.data.trim() !== '') {\n    try {\n        // Converte a propriedade especificada de Base64 para Hex e armazena o resultado\n        msg.payload.data = base64ToHex(msg.payload.data);\n        return msg;\n    } catch (error) {\n        // Trata erros de conversão\n        node.error(\"Erro ao converter Base64 para Hex: \" + error.message);\n        return null; // Interrompe o fluxo aqui\n    }\n} else {\n    // Retorna uma mensagem de erro se o payload não contém a propriedade correta\n    node.error(\"Payload must be an object containing a 'data' property with Base64 string\");\n    return null; // Interrompe o fluxo aqui\n}\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 400,
+        "wires": [
+            [
+                "02e87edf3e0af6b1"
+            ]
+        ]
+    },
+    {
+        "id": "f07bcef6bba2d042",
+        "type": "debug",
+        "z": "db8b9e2e947406c1",
+        "name": "Influxdb",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "02e87edf3e0af6b1",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Hex to ASCII",
+        "func": "function hexToAscii(hex) {\n    var ascii = '';\n    for (var i = 0; i < hex.length; i += 2) {\n        ascii += String.fromCharCode(parseInt(hex.substr(i, 2), 16));\n    }\n    return ascii;\n}\n\nvar data = hexToAscii(msg.payload.data);\n\nmsg.payload.data = data;\n\nreturn msg;\n\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 400,
+        "wires": [
+            [
+                "ba0664929eda53d7"
+            ]
+        ]
+    },
+    {
+        "id": "ba0664929eda53d7",
+        "type": "function",
+        "z": "db8b9e2e947406c1",
+        "name": "Create database payload",
+        "func": "// Cria um novo payload somente com os campos desejados\n\n\nmsg.payload = {\n    //tags: {\n        deviceName: msg.payload.deviceInfo.deviceName,\n    //},\n\n    //fields: {\n        data: msg.payload.data,\n        dr: msg.payload.dr,\n        fCnt: msg.payload.fCnt,\n        rssi: msg.payload.rxInfo[0].rssi,\n        snr: msg.payload.rxInfo[0].snr,\n        frequency: msg.payload.txInfo.frequency,\n        bandwidth: msg.payload.txInfo.modulation.lora.bandwidth,\n        SF: msg.payload.txInfo.modulation.lora.spreadingFactor,\n        CR: msg.payload.txInfo.modulation.lora.codeRate,\n        confirmed: msg.payload.confirmed,\n        adr: msg.payload.adr,\n    //},\n    \n}; \n\nmsg.measur\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 400,
+        "wires": [
+            [
+                "f07bcef6bba2d042",
+                "40a4a423a9d93bee"
+            ]
+        ]
+    },
+    {
+        "id": "40a4a423a9d93bee",
+        "type": "influxdb out",
+        "z": "db8b9e2e947406c1",
+        "influxdb": "4852b867f0a1315a",
+        "name": "influxdb",
+        "measurement": "arduino_03",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "UNIBG",
+        "bucket": "industrial_iot",
+        "x": 1020,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "ac4e846f588e8e65",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4852b867f0a1315a",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "lorawan_air_quality_sensors",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://localhost:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    }
+]
