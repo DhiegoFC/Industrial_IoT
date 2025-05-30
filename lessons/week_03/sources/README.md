@@ -68,7 +68,7 @@ Use the same sketch from Week 2:
 ## Import Node-Red Flow
 
 You can import the nodered flow [here](./node-red/chirpstack-mqtt-integration-influxdb.json)
-- Your flow will be integrated to mqtt server.
+- Your flow will be integrated to ChirpStack mqtt server.
 - Your LoRaWAN data flow will be stored in Influx database.
 
 ---
@@ -76,7 +76,7 @@ You can import the nodered flow [here](./node-red/chirpstack-mqtt-integration-in
 ## Import Grafana Dashboard
 
 You can import the Grafana Dashboard [here](./grafana/grafana.json)
-- Visualizing your LoRaWAN Data Pipe Line in a friendly grafic dashboard.
+- Visualizing your **LoRaWAN Data Pipe Line** in a friendly grafic dashboard.
 
 ---
 
@@ -101,6 +101,4 @@ week_03/
     ├── lesson_images/
     ├── node-red/
         └── chirpstack-mqtt-integration-influxdb.json
-     
-
 
