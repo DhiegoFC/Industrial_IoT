@@ -2,7 +2,7 @@
 # Full IoT Pipeline with Data Visualization 
 
 <div align="center">
-    <img src="./lesson_images/lorawan_pipeline.png" alt="LoRaWAN Pipeline" width="600"/>
+    <img src="./lesson_images/lorawan_pipeline.png" alt="LoRaWAN Pipeline" width="650"/>
 </div>
 
 ## 🎯 Objective
